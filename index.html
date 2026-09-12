@@ -4,19 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>Explore World · Tours & Travels</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- ========================================================= -->
-<!--  CREATE ACCOUNT PAGE (Logout ke baad fir se dikhega)       -->
-<!-- ========================================================= -->
-<div id="createAccountPage" class="account-page">
+<!-- LOADING SCREEN (Real Earth) -->
+<div id="loadingScreen" class="loading-screen">
+    <div class="loading-earth">
+        <div class="earth-sphere">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/400px-The_Earth_seen_from_Apollo_17.jpg" alt="Earth" />
+            <div class="earth-shine"></div>
+        </div>
+    </div>
+    <h1 class="loading-title"><span>Explore</span>World</h1>
+    <p class="loading-sub">Preparing your journey...</p>
+    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+</div>
+
+<!-- CREATE ACCOUNT PAGE -->
+<div id="createAccountPage" class="account-page" style="display:none;">
     <div class="account-container">
         <div class="account-box">
             <div class="account-logo">
                 <h1><span>Explore</span>World</h1>
-                <p>Create your account to get started</p>
+                <p>Create your account to continue</p>
             </div>
             <form id="createAccountForm" autocomplete="off">
                 <input type="text" id="accFullName" placeholder="Full Name" required autocomplete="off" />
@@ -37,7 +51,6 @@
             </p>
         </div>
 
-        <!-- Login Box -->
         <div class="account-box" id="loginBox" style="display: none;">
             <div class="account-logo">
                 <h1><span>Explore</span>World</h1>
@@ -58,25 +71,14 @@
     </div>
 </div>
 
-<!-- ========================================================= -->
-<!--  MAIN APP (Account create karne ke baad hi dikhega)        -->
-<!-- ========================================================= -->
+<!-- MAIN APP -->
 <div id="mainApp" style="display: none;">
 
-    <!-- ===== HEADER / NAVBAR ===== -->
     <header>
         <div class="navbar">
-            <div class="logo">
-                <a href="#" data-section="home"><span>Explore</span>World</a>
-            </div>
-            
+            <div class="logo"><a href="#" data-section="home"><span>Explore</span>World</a></div>
             <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-            <label for="nav-toggle" class="nav-toggle-label">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
-            
+            <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
             <nav class="nav-links">
                 <ul>
                     <li><a href="#" class="nav-link active" data-section="home">🏠 Home</a></li>
@@ -86,11 +88,11 @@
                     <li><a href="#" class="nav-link" data-section="profile">👤 Profile</a></li>
                 </ul>
             </nav>
-            
             <div class="nav-actions">
                 <div class="search-bar">
-                    <input type="text" placeholder="Search destinations..." id="searchInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
-                    <button type="button" id="searchBtn">🔍</button>
+                    <input type="text" placeholder="Search destinations..." id="searchInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="search_query" />
+                    <button type="button" class="mic-btn" id="searchMicBtn" title="Voice Search">🎤</button>
+                    <button type="button" id="searchBtn" title="Search">🔍</button>
                 </div>
                 <a href="#" class="wishlist-icon" id="wishlistIcon">❤️ <span class="wishlist-badge" id="wishlistCount">0</span></a>
             </div>
@@ -98,175 +100,221 @@
     </header>
 
     <main>
-
-        <!-- ===== HOME SECTION ===== -->
+        <!-- HOME -->
         <section id="home" class="section active">
-            <!-- Slider -->
+            <!-- SLIDER -->
             <div class="slider-container">
                 <div class="slider-wrapper" id="sliderWrapper">
-                    <div class="slide active">
-                        <div class="slide-content">
-                            <div class="slide-text">
-                                <span class="slide-badge">🌴 Summer Sale</span>
-                                <h2>Up to 40% OFF</h2>
-                                <p>Beach Destinations & Resorts</p>
-                                <a href="#" class="slide-btn" data-section="tours">Explore Tours →</a>
-                            </div>
-                            <div class="slide-image">
-                                <img src="images/beach1.png" alt="Beach Tour" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="slide-content">
-                            <div class="slide-text">
-                                <span class="slide-badge">⛰️ Mountain Escape</span>
-                                <h2>Himalayan Treks</h2>
-                                <p>Starting from ₹9,999</p>
-                                <a href="#" class="slide-btn" data-section="tours">Explore →</a>
-                            </div>
-                            <div class="slide-image">
-                                <img src="images/mountain2.png" alt="Mountain Tour" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="slide-content">
-                            <div class="slide-text">
-                                <span class="slide-badge">🏙️ City Tours</span>
-                                <h2>Explore Indian Cities</h2>
-                                <p>Cultural & Heritage Tours</p>
-                                <a href="#" class="slide-btn" data-section="tours">View Deals →</a>
-                            </div>
-                            <div class="slide-image">
-                                <img src="images/jaipur.png" alt="City Tour" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="slide-content">
-                            <div class="slide-text">
-                                <span class="slide-badge">🧗 Adventure</span>
-                                <h2>Adventure Sports</h2>
-                                <p>Rafting, Paragliding & More</p>
-                                <a href="#" class="slide-btn" data-section="tours">Book Now →</a>
-                            </div>
-                            <div class="slide-image">
-                                <img src="images/paragling.png" alt="Adventure Tour" />
-                            </div>
-                        </div>
-                    </div>
+                    <div class="slide active"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🌴 Summer Sale</span><h2>Up to 40% OFF</h2><p>Beach Destinations & Resorts</p><a href="#" class="slide-btn" data-section="tours">Explore Tours →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&h=300&fit=crop&auto=format" alt="Beach" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">⛰️ Mountain Escape</span><h2>Himalayan Treks</h2><p>Starting from ₹9,999</p><a href="#" class="slide-btn" data-section="tours">Explore →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=300&h=300&fit=crop&auto=format" alt="Mountain" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🏙️ City Tours</span><h2>Explore Indian Cities</h2><p>Cultural & Heritage Tours</p><a href="#" class="slide-btn" data-section="tours">View Deals →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1477587458883-47145ed94295?w=300&h=300&fit=crop&auto=format" alt="City" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🧗 Adventure</span><h2>Adventure Sports</h2><p>Rafting, Paragliding & More</p><a href="#" class="slide-btn" data-section="tours">Book Now →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=300&fit=crop&auto=format" alt="Adventure" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🗼 Europe Special</span><h2>Paris, France</h2><p>Romance & Eiffel Tower</p><a href="#" class="slide-btn" data-section="tours">Explore Paris →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=300&h=300&fit=crop&auto=format" alt="Paris" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🗽 USA Special</span><h2>New York</h2><p>City That Never Sleeps</p><a href="#" class="slide-btn" data-section="tours">Explore NYC →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=300&h=300&fit=crop&auto=format" alt="New York" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🏯 Asia Special</span><h2>Tokyo, Japan</h2><p>Cherry Blossoms & Tech</p><a href="#" class="slide-btn" data-section="tours">Explore Tokyo →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=300&h=300&fit=crop&auto=format" alt="Tokyo" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🏝️ Island Special</span><h2>Bali, Indonesia</h2><p>Beaches & Temples</p><a href="#" class="slide-btn" data-section="tours">Explore Bali →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=300&h=300&fit=crop&auto=format" alt="Bali" loading="lazy" /></div></div></div>
                 </div>
                 <button class="slider-btn prev-btn" id="prevSlide">❮</button>
                 <button class="slider-btn next-btn" id="nextSlide">❯</button>
                 <div class="slider-dots" id="sliderDots"></div>
             </div>
 
-            <!-- Hero Content -->
-            <div class="hero">
-                <div class="hero-content">
-                    <h1>🌍 Explore the World</h1>
-                    <p>Discover amazing destinations, book tours, and create unforgettable memories with Explore World.</p>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">10K+</span>
-                            <span class="stat-label">Happy Travelers</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">Destinations</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">98%</span>
-                            <span class="stat-label">Satisfaction</span>
+            <!-- HERO -->
+            <div class="hero-new">
+                <div class="hero-bg-visual">
+                    <div class="floating-cloud cloud-1"></div>
+                    <div class="floating-cloud cloud-2"></div>
+                    <div class="floating-plane">✈️</div>
+                    <div class="floating-star star-1">⭐</div>
+                    <div class="floating-star star-2">✨</div>
+                </div>
+                <div class="hero-new-content">
+                    <span class="hero-badge">🌍 Your Journey Begins Here</span>
+                    <h1 class="hero-title">Explore the <span class="hero-highlight">World</span>,<br/>One City at a Time</h1>
+                    <p class="hero-subtitle">500+ destinations across India and the world — beaches, mountains, cities, and adventures await.</p>
+                    <div class="hero-search">
+                        <div class="hero-search-icon">🔍</div>
+                        <input type="text" id="heroSearchInput" placeholder="Where do you want to go?" autocomplete="off" />
+                        <button type="button" class="hero-mic-btn" id="heroMicBtn" title="Voice Search">🎤</button>
+                        <button type="button" class="hero-search-btn" id="heroSearchBtn">Search</button>
+                    </div>
+                    <div class="quick-chips">
+                        <button class="quick-chip" data-category="beach">🌴 Beach</button>
+                        <button class="quick-chip" data-category="mountain">⛰️ Mountain</button>
+                        <button class="quick-chip" data-category="city">🏙️ City</button>
+                        <button class="quick-chip" data-category="cultural">🏛️ Cultural</button>
+                        <button class="quick-chip" data-category="adventure">🧗 Adventure</button>
+                    </div>
+                    <div class="hero-stats-new">
+                        <div class="hero-stat"><span class="hero-stat-number">50K+</span><span class="hero-stat-label">Happy Travelers</span></div>
+                        <div class="hero-stat"><span class="hero-stat-number">500+</span><span class="hero-stat-label">Destinations</span></div>
+                        <div class="hero-stat"><span class="hero-stat-number">98%</span><span class="hero-stat-label">Satisfaction</span></div>
+                    </div>
+                </div>
+                <div class="hero-globe-wrapper">
+                    <div class="hero-globe" id="heroGlobe">
+                        <div class="globe-sphere">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/500px-The_Earth_seen_from_Apollo_17.jpg" alt="Earth" />
+                            <span class="globe-pin pin-1" title="Paris">📍</span>
+                            <span class="globe-pin pin-2" title="New York">📍</span>
+                            <span class="globe-pin pin-3" title="Tokyo">📍</span>
+                            <span class="globe-pin pin-4" title="Bali">📍</span>
+                            <span class="globe-pin pin-5" title="Goa">📍</span>
                         </div>
                     </div>
-                    <a href="#" class="cta-button" data-section="tours">Explore Tours</a>
                 </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=300&fit=crop&auto=format" alt="Travel banner" />
+                <div class="scroll-indicator">⬇️ Scroll to explore</div>
+            </div>
+
+            <!-- CATEGORY EXPLORER -->
+            <div class="section-block">
+                <h2 class="section-title">Explore by Category</h2>
+                <p class="section-subtitle">Pick your vibe — thousands of tours, one destination</p>
+                <div class="category-explorer">
+                    <div class="category-card" data-category="beach"><div class="category-icon">🏖️</div><h3>Beaches</h3><p>45 tours</p></div>
+                    <div class="category-card" data-category="mountain"><div class="category-icon">⛰️</div><h3>Mountains</h3><p>32 tours</p></div>
+                    <div class="category-card" data-category="city"><div class="category-icon">🏙️</div><h3>Cities</h3><p>28 tours</p></div>
+                    <div class="category-card" data-category="cultural"><div class="category-icon">🏛️</div><h3>Cultural</h3><p>38 tours</p></div>
+                    <div class="category-card" data-category="adventure"><div class="category-icon">🧗</div><h3>Adventure</h3><p>25 tours</p></div>
+                    <div class="category-card" data-category="all"><div class="category-icon">🌍</div><h3>International</h3><p>24 tours</p></div>
+                </div>
+            </div>
+
+            <!-- TRENDING -->
+            <div class="section-block">
+                <h2 class="section-title">🔥 Trending This Week</h2>
+                <p class="section-subtitle">Most booked destinations right now</p>
+                <div class="trending-wrapper">
+                    <button class="trending-arrow left" id="trendingLeft">❮</button>
+                    <div class="trending-scroll" id="trendingScroll"></div>
+                    <button class="trending-arrow right" id="trendingRight">❯</button>
+                </div>
+            </div>
+
+            <!-- INTERNATIONAL -->
+            <div class="section-block">
+                <h2 class="section-title">🌍 Top International Tours</h2>
+                <p class="section-subtitle">Fly beyond borders — explore the world</p>
+                <div class="region-tabs">
+                    <button class="region-tab active" data-region="europe">🗼 Europe</button>
+                    <button class="region-tab" data-region="americas">🗽 Americas</button>
+                    <button class="region-tab" data-region="asia">🏯 Asia</button>
+                    <button class="region-tab" data-region="africa">🦁 Africa</button>
+                    <button class="region-tab" data-region="oceania">🦘 Oceania</button>
+                </div>
+                <div class="international-grid" id="internationalGrid"></div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="section-block">
+                <h2 class="section-title">❓ Frequently Asked Questions</h2>
+                <p class="section-subtitle">Everything you need to know before booking</p>
+                <div class="faq-container">
+                    <div class="faq-item"><button class="faq-question"><span>How do I book a tour on Explore World?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Simply browse our tours, click "Book Now" on any tour you like, fill in your traveler details, choose your payment method, and confirm. You'll receive instant confirmation with a QR code ticket!</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>What payment methods do you accept?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>We accept Credit/Debit Cards, Net Banking, UPI (with QR code), and Cash on Delivery. All payments are 100% secure and encrypted.</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>Can I cancel my booking?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes! Free cancellation is available up to 7 days before your tour start date. For cancellations within 7 days, a partial refund is provided.</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>Do you offer group discounts?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Absolutely! Book for 5 or more travelers and get an automatic 10% discount on the total tour price. No coupon code needed!</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>Is there 24/7 customer support?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes! Our support team is available 24/7 via chat, email, and phone. You can also use our TravelBot chatbot for instant answers.</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>Do I need to create an account to book?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes, a free account is required to book tours, add to wishlist, or send enquiries. Sign up takes just 30 seconds!</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>How can I track my booking?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>After booking, you can view all your bookings in the Profile → Bookings section. Each booking has live tracking showing its current status.</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>What about travel insurance?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>We partner with top insurance providers to offer comprehensive travel coverage. You can add insurance during booking.</p></div></div>
+                </div>
+            </div>
+
+            <!-- REVIEWS -->
+            <div class="section-block">
+                <h2 class="section-title">💬 What Our Travelers Say</h2>
+                <p class="section-subtitle">Real experiences from real adventurers</p>
+                <div class="reviews-wrapper">
+                    <div class="reviews-scroll" id="reviewsScroll">
+                        <div class="review-card"><div class="review-header"><div class="review-avatar">👩</div><div><h4>Priya Sharma</h4><p>Mumbai</p></div></div><div class="review-stars">★★★★★</div><p class="review-text">"Bali trip was magical! Explore World made everything seamless."</p></div>
+                        <div class="review-card"><div class="review-header"><div class="review-avatar">👨</div><div><h4>Rahul Verma</h4><p>Delhi</p></div></div><div class="review-stars">★★★★★</div><p class="review-text">"Himalayan trek was life-changing. Guides were professional."</p></div>
+                        <div class="review-card"><div class="review-header"><div class="review-avatar">👩‍🦰</div><div><h4>Ananya Iyer</h4><p>Bangalore</p></div></div><div class="review-stars">★★★★★</div><p class="review-text">"Paris trip was a dream come true! 5 stars!"</p></div>
+                        <div class="review-card"><div class="review-header"><div class="review-avatar">🧑</div><div><h4>Arjun Mehta</h4><p>Pune</p></div></div><div class="review-stars">★★★★★</div><p class="review-text">"Tokyo was incredible — cherry blossoms, food, tech!"</p></div>
+                        <div class="review-card"><div class="review-header"><div class="review-avatar">👩‍🦱</div><div><h4>Sneha Patel</h4><p>Ahmedabad</p></div></div><div class="review-stars">★★★★★</div><p class="review-text">"Kerala backwaters were so peaceful."</p></div>
+                        <div class="review-card"><div class="review-header"><div class="review-avatar">👨‍🦱</div><div><h4>Vikram Singh</h4><p>Jaipur</p></div></div><div class="review-stars">★★★★★</div><p class="review-text">"New York City tour was perfect!"</p></div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== ABOUT US SECTION ===== -->
+        <!-- ABOUT -->
         <section id="about" class="section hidden">
-            <h2>About Explore World</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Welcome to <strong>Explore World</strong> – your gateway to the world's most amazing destinations. Since 2020, we've been crafting unforgettable travel experiences for adventurers, families, and explorers.</p>
-                    <p>Our mission is to provide personalized travel packages with exceptional service. From exotic beaches to mountain retreats, we curate the best experiences from around the globe.</p>
-                    <div class="about-highlights">
-                        <div class="highlight-item"><span class="highlight-icon">✈️</span><span>Flight Bookings</span></div>
-                        <div class="highlight-item"><span class="highlight-icon">🏨</span><span>Hotel Reservations</span></div>
-                        <div class="highlight-item"><span class="highlight-icon">🚗</span><span>Car Rentals</span></div>
-                        <div class="highlight-item"><span class="highlight-icon">🎫</span><span>Tour Packages</span></div>
-                    </div>
-                    <p>🌟 <strong>Why choose us?</strong></p>
-                    <ul class="about-features">
-                        <li>✅ 100% Customized Packages</li>
-                        <li>✅ Best Price Guarantee</li>
-                        <li>✅ 24/7 Travel Support</li>
-                        <li>✅ Easy Cancellation Policy</li>
-                    </ul>
+            <div class="about-hero">
+                <h1 class="about-hero-title">Our Story</h1>
+                <p class="about-hero-subtitle">Crafting unforgettable journeys since 2020</p>
+            </div>
+            <div class="about-intro">
+                <div class="about-intro-text">
+                    <h2>Welcome to <span>Explore World</span></h2>
+                    <p>We're not just a travel company — we're your partners in creating memories that last a lifetime. Since 2020, we've helped over <strong>50,000 travelers</strong> discover the magic of our planet.</p>
+                    <p>Our mission is simple: to make world-class travel accessible, affordable, and unforgettable for everyone.</p>
                 </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=300&fit=crop&auto=format" alt="About Explore World" />
+                <div class="about-intro-image">
+                    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=400&fit=crop&auto=format" alt="Travel" />
+                </div>
+            </div>
+            <div class="about-values">
+                <h2 class="section-title">What We Stand For</h2>
+                <div class="values-grid">
+                    <div class="value-card"><div class="value-icon">🎯</div><h3>Our Mission</h3><p>To make world-class travel experiences accessible to every explorer.</p></div>
+                    <div class="value-card"><div class="value-icon">👁️</div><h3>Our Vision</h3><p>To become India's most trusted travel partner.</p></div>
+                    <div class="value-card"><div class="value-icon">💎</div><h3>Our Values</h3><p>Transparency, authenticity, and customer-first thinking.</p></div>
+                    <div class="value-card"><div class="value-icon">🚀</div><h3>Our Promise</h3><p>Every journey we curate will exceed expectations.</p></div>
+                </div>
+            </div>
+            <div class="about-stats">
+                <div class="about-stat"><span class="about-stat-number" data-target="50000" data-suffix="+">0</span><span class="about-stat-label">Happy Travelers</span></div>
+                <div class="about-stat"><span class="about-stat-number" data-target="500" data-suffix="+">0</span><span class="about-stat-label">Destinations</span></div>
+                <div class="about-stat"><span class="about-stat-number" data-target="50" data-suffix="+">0</span><span class="about-stat-label">Countries</span></div>
+                <div class="about-stat"><span class="about-stat-number" data-target="4.9" data-suffix="★" data-decimal="1">0</span><span class="about-stat-label">Average Rating</span></div>
+            </div>
+            <div class="about-why">
+                <h2 class="section-title">Why Choose Explore World?</h2>
+                <div class="why-grid">
+                    <div class="why-item"><div class="why-icon">✅</div><h4>100% Authentic</h4><p>Every tour verified and quality-checked</p></div>
+                    <div class="why-item"><div class="why-icon">💰</div><h4>Best Price</h4><p>Price match guarantee</p></div>
+                    <div class="why-item"><div class="why-icon">📞</div><h4>24/7 Support</h4><p>Real humans, anytime</p></div>
+                    <div class="why-item"><div class="why-icon">🔄</div><h4>Easy Cancellation</h4><p>Free up to 7 days before</p></div>
+                    <div class="why-item"><div class="why-icon">🎁</div><h4>Group Discounts</h4><p>10% off for 5+ travelers</p></div>
+                    <div class="why-item"><div class="why-icon">📱</div><h4>Digital Tickets</h4><p>QR code check-in</p></div>
+                </div>
+            </div>
+            <div class="about-team">
+                <h2 class="section-title">Meet Our Team</h2>
+                <p class="section-subtitle">Passionate travelers, just like you</p>
+                <div class="team-grid">
+                    <div class="team-member"><div class="team-avatar">👨‍💼</div><h4>Rajesh Kumar</h4><p>Founder & CEO</p></div>
+                    <div class="team-member"><div class="team-avatar">👩‍💼</div><h4>Priya Desai</h4><p>Head of Operations</p></div>
+                    <div class="team-member"><div class="team-avatar">🧑‍💻</div><h4>Amit Sharma</h4><p>Tech Lead</p></div>
+                    <div class="team-member"><div class="team-avatar">👩‍🎨</div><h4>Neha Patel</h4><p>Customer Experience</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== TOURS SECTION ===== -->
+        <!-- TOURS -->
         <section id="tours" class="section hidden">
-            <h2>⭐ Popular Tours</h2>
-            
+            <div class="tours-hero">
+                <h1 class="tours-hero-title">Find Your Perfect Tour</h1>
+                <p class="tours-hero-subtitle">Handpicked experiences from around the world</p>
+            </div>
             <div class="category-tabs">
-                <button class="cat-btn active" data-category="all">All</button>
+                <button class="cat-btn active" data-category="all">All Tours</button>
                 <button class="cat-btn" data-category="beach">🏖️ Beach</button>
                 <button class="cat-btn" data-category="mountain">⛰️ Mountain</button>
                 <button class="cat-btn" data-category="city">🏙️ City</button>
                 <button class="cat-btn" data-category="cultural">🏛️ Cultural</button>
                 <button class="cat-btn" data-category="adventure">🧗 Adventure</button>
             </div>
-
             <div class="filter-row">
-                <div class="filter-group">
-                    <label>Price:</label>
-                    <select id="priceFilter">
-                        <option value="all">All</option>
-                        <option value="0-10000">Under ₹10,000</option>
-                        <option value="10000-30000">₹10,000 - ₹30,000</option>
-                        <option value="30000-50000">₹30,000 - ₹50,000</option>
-                        <option value="50000+">Above ₹50,000</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>Duration:</label>
-                    <select id="durationFilter">
-                        <option value="all">All</option>
-                        <option value="1-3">1-3 Days</option>
-                        <option value="4-7">4-7 Days</option>
-                        <option value="8-14">8-14 Days</option>
-                        <option value="15+">15+ Days</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>Sort:</label>
-                    <select id="sortFilter">
-                        <option value="default">Default</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
-                        <option value="rating">Rating</option>
-                    </select>
-                </div>
+                <div class="filter-group"><label>Price:</label><select id="priceFilter"><option value="all">All</option><option value="0-10000">Under ₹10,000</option><option value="10000-30000">₹10,000 - ₹30,000</option><option value="30000-50000">₹30,000 - ₹50,000</option><option value="50000-100000">₹50,000 - ₹1,00,000</option><option value="100000+">Above ₹1,00,000</option></select></div>
+                <div class="filter-group"><label>Duration:</label><select id="durationFilter"><option value="all">All</option><option value="1-3">1-3 Days</option><option value="4-7">4-7 Days</option><option value="8-14">8-14 Days</option><option value="15+">15+ Days</option></select></div>
+                <div class="filter-group"><label>Sort:</label><select id="sortFilter"><option value="default">Default</option><option value="price-low">Price: Low to High</option><option value="price-high">Price: High to Low</option><option value="rating">Rating</option></select></div>
             </div>
-
-            <div class="tour-grid" id="tourGrid">
-                <!-- Tours rendered by JavaScript -->
-            </div>
+            <div class="tour-grid" id="tourGrid"></div>
         </section>
 
-        <!-- ===== OFFERS SECTION ===== -->
+        <!-- OFFERS -->
         <section id="offers" class="section hidden">
             <h2>🔥 Special Offers</h2>
             <div class="offer-tabs">
@@ -275,7 +323,6 @@
                 <button class="tab-btn" data-tab="lastminute">Last Minute</button>
                 <button class="tab-btn" data-tab="combo">Combo</button>
             </div>
-
             <div class="offer-tab-content active" id="seasonal">
                 <div class="offer-grid">
                     <div class="offer-card"><div class="offer-badge">☀️ Summer Special</div><div class="offer-icon">☀️</div><h3>Summer Getaway</h3><p>Up to 40% OFF on beach destinations</p><div class="offer-details"><span>✅ Free Beach Activities</span><span>✅ 5 Star Resort</span><span>✅ All Meals Included</span></div><div class="offer-savings">Save ₹15,000</div></div>
@@ -284,7 +331,6 @@
                     <div class="offer-card"><div class="offer-badge">🎉 Festival Special</div><div class="offer-icon">🎉</div><h3>Festival Package</h3><p>Up to 50% OFF on special events</p><div class="offer-details"><span>✅ VIP Access</span><span>✅ Cultural Shows</span><span>✅ Free Souvenirs</span></div><div class="offer-savings">Save ₹10,000</div></div>
                 </div>
             </div>
-
             <div class="offer-tab-content" id="group">
                 <div class="offer-grid">
                     <div class="offer-card group-card"><div class="offer-badge">👨‍👩‍👧 Family Package</div><div class="offer-icon">🏠</div><h3>Family Adventure</h3><p>Flat <strong>25% OFF</strong> for groups of 4+</p><div class="offer-details"><span>✅ Kids Free Activities</span><span>✅ Family Suites</span><span>✅ Custom Itinerary</span></div><div class="offer-savings">Save ₹12,000</div></div>
@@ -293,7 +339,6 @@
                     <div class="offer-card group-card"><div class="offer-badge">👥 Corporate Package</div><div class="offer-icon">🏢</div><h3>Corporate Retreat</h3><p>Special 20% OFF for companies</p><div class="offer-details"><span>✅ Team Building</span><span>✅ Conference Rooms</span><span>✅ Custom Packages</span></div><div class="offer-savings">Save ₹25,000</div></div>
                 </div>
             </div>
-
             <div class="offer-tab-content" id="lastminute">
                 <div class="offer-grid">
                     <div class="offer-card lastminute-card"><div class="offer-badge">⚡ Flash Deal</div><div class="offer-icon">⏰</div><h3>Last Minute Beach</h3><p>Book within 48 hours and save 40%</p><div class="offer-details"><span>✅ 3 Days Beach Stay</span><span>✅ Free Airport Transfer</span><span>✅ Breakfast Included</span></div><div class="offer-savings">Save ₹9,000</div></div>
@@ -302,7 +347,6 @@
                     <div class="offer-card lastminute-card"><div class="offer-badge">💫 Urgent Deal</div><div class="offer-icon">💫</div><h3>Last Minute Adventure</h3><p>20% OFF on extreme sports</p><div class="offer-details"><span>✅ Paragliding</span><span>✅ Rafting</span><span>✅ Ziplining</span></div><div class="offer-savings">Save ₹6,000</div></div>
                 </div>
             </div>
-
             <div class="offer-tab-content" id="combo">
                 <div class="offer-grid">
                     <div class="offer-card combo-card"><div class="offer-badge">🔄 Beach+City</div><div class="offer-icon">🏖️+🏙️</div><h3>Beach & City Combo</h3><p>Save 25% when you book both</p><div class="offer-details"><span>✅ 4 Days Beach</span><span>✅ 3 Days City</span><span>✅ Transfers Included</span></div><div class="offer-savings">Save ₹18,000</div></div>
@@ -313,403 +357,145 @@
             </div>
         </section>
 
-        <!-- ===== PROFILE SECTION ===== -->
+        <!-- PROFILE -->
         <section id="profile" class="section hidden">
             <h2>👤 My Profile</h2>
             <div class="profile-container">
-                <!-- Profile Header -->
                 <div class="profile-header">
-                    <div class="profile-avatar">👤</div>
+                    <div class="profile-avatar" id="profileAvatarDisplay">
+                        <span id="profileAvatarText">👤</span>
+                        <img id="profileAvatarImage" src="" alt="" style="display:none;" />
+                        <label class="profile-avatar-upload" for="avatarUpload" title="Change Photo">📷</label>
+                        <input type="file" id="avatarUpload" accept="image/*" style="display:none;" />
+                    </div>
                     <div class="profile-info">
-                        <h3 id="profileName">John Doe</h3>
-                        <p id="profileEmail">john@email.com</p>
-                        <p id="profilePhone">+91 98765 43210</p>
+                        <h3 id="profileName">Guest User</h3>
+                        <p id="profileEmail">-</p>
+                        <p id="profilePhone">-</p>
                     </div>
                 </div>
-
-                <!-- Profile Tabs -->
                 <div class="profile-tabs">
                     <button class="profile-tab active" data-tab="bookings">📦 Bookings</button>
                     <button class="profile-tab" data-tab="payments">💳 Payments</button>
                     <button class="profile-tab" data-tab="addresses">📍 Addresses</button>
                     <button class="profile-tab" data-tab="settings">⚙️ Settings</button>
                 </div>
-
-                <!-- Bookings Tab -->
-                <div class="profile-tab-content active" id="tab-bookings">
-                    <div class="order-card">
-                        <div class="order-header">
-                            <span class="order-id">#EW2026-001234</span>
-                            <span class="order-status delivered">✅ Completed</span>
-                        </div>
-                        <div class="order-details">
-                            <span>🏖️ 3 items</span>
-                            <span>₹1,49,899</span>
-                            <span>📅 15 Jan 2026</span>
-                        </div>
-                        <div class="order-tracker">
-                            <div class="tracker-step completed"><span>📅</span> Booked</div>
-                            <div class="tracker-step completed"><span>✈️</span> Confirmed</div>
-                            <div class="tracker-step completed"><span>✅</span> Completed</div>
-                        </div>
-                    </div>
-                    <div class="order-card">
-                        <div class="order-header">
-                            <span class="order-id">#EW2026-001235</span>
-                            <span class="order-status transit">✈️ In Progress</span>
-                        </div>
-                        <div class="order-details">
-                            <span>⛰️ 1 item</span>
-                            <span>₹24,999</span>
-                            <span>📅 10 Jan 2026</span>
-                        </div>
-                        <div class="order-tracker">
-                            <div class="tracker-step completed"><span>📅</span> Booked</div>
-                            <div class="tracker-step active"><span>✈️</span> Confirmed</div>
-                            <div class="tracker-step"><span>✅</span> Completed</div>
-                        </div>
-                    </div>
-                    <div class="order-card">
-                        <div class="order-header">
-                            <span class="order-id">#EW2026-001236</span>
-                            <span class="order-status pending">⏳ Pending</span>
-                        </div>
-                        <div class="order-details">
-                            <span>🏙️ 2 items</span>
-                            <span>₹14,990</span>
-                            <span>📅 5 Jan 2026</span>
-                        </div>
-                        <div class="order-tracker">
-                            <div class="tracker-step active"><span>📅</span> Booked</div>
-                            <div class="tracker-step"><span>✈️</span> Confirmed</div>
-                            <div class="tracker-step"><span>✅</span> Completed</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Payments Tab -->
-                <div class="profile-tab-content" id="tab-payments">
-                    <div class="payment-card">
-                        <div class="payment-info">
-                            <span class="payment-amount">₹1,49,899</span>
-                            <span class="payment-status success">✅ Success</span>
-                        </div>
-                        <div class="payment-details">
-                            <span>💳 Credit Card</span>
-                            <span>📅 15 Jan 2026</span>
-                            <span>#EW2026-001234</span>
-                        </div>
-                    </div>
-                    <div class="payment-card">
-                        <div class="payment-info">
-                            <span class="payment-amount">₹24,999</span>
-                            <span class="payment-status success">✅ Success</span>
-                        </div>
-                        <div class="payment-details">
-                            <span>💵 Cash on Delivery</span>
-                            <span>📅 10 Jan 2026</span>
-                            <span>#EW2026-001235</span>
-                        </div>
-                    </div>
-                    <div class="payment-card">
-                        <div class="payment-info">
-                            <span class="payment-amount">₹14,990</span>
-                            <span class="payment-status pending">⏳ Pending</span>
-                        </div>
-                        <div class="payment-details">
-                            <span>📱 UPI</span>
-                            <span>📅 5 Jan 2026</span>
-                            <span>#EW2026-001236</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Addresses Tab -->
+                <div class="profile-tab-content active" id="tab-bookings"><div id="userBookingsList"><p style="color:var(--text-light);text-align:center;padding:1.5rem;">No bookings yet.</p></div></div>
+                <div class="profile-tab-content" id="tab-payments"><div id="userPaymentsList"><p style="color:var(--text-light);text-align:center;padding:1.5rem;">No payments yet.</p></div></div>
                 <div class="profile-tab-content" id="tab-addresses">
-                    <div id="addressList">
-                        <div class="address-card" data-address="home">
-                            <div class="address-type">🏠 Home</div>
-                            <div class="address-detail">123, Main Street, Andheri East, Mumbai - 400001</div>
-                            <span class="address-default">Default</span>
-                            <button class="address-delete" onclick="deleteAddress('home')">🗑️</button>
-                        </div>
-                        <div class="address-card" data-address="office">
-                            <div class="address-type">🏢 Office</div>
-                            <div class="address-detail">456, Business Park, BKC, Mumbai - 400051</div>
-                            <button class="address-delete" onclick="deleteAddress('office')">🗑️</button>
-                        </div>
-                        <div class="address-card" data-address="other">
-                            <div class="address-type">📍 Other</div>
-                            <div class="address-detail">789, Lake View, Pune - 411001</div>
-                            <button class="address-delete" onclick="deleteAddress('other')">🗑️</button>
-                        </div>
-                    </div>
+                    <div id="addressList"></div>
                     <button class="add-address-btn" id="showAddAddress">+ Add New Address</button>
-                    
-                    <!-- Add Address Form -->
                     <div id="addAddressForm" style="display:none; margin-top: var(--space-md);">
                         <input type="text" id="newAddressLabel" placeholder="Label (Home, Office, etc.)" />
                         <input type="text" id="newAddressDetail" placeholder="Address details" />
-                        <div style="display:flex; gap:var(--space-sm);">
-                            <button id="saveAddressBtn" class="create-account-btn" style="flex:1;">Save Address</button>
-                            <button id="cancelAddressBtn" class="order-back-btn" style="flex:1;">Cancel</button>
-                        </div>
+                        <div style="display:flex; gap:var(--space-sm);"><button id="saveAddressBtn" class="create-account-btn" style="flex:1;">Save Address</button><button id="cancelAddressBtn" class="order-back-btn" style="flex:1;">Cancel</button></div>
                     </div>
                 </div>
-
-                <!-- Settings Tab -->
                 <div class="profile-tab-content" id="tab-settings">
-                    <div class="settings-item" id="editProfileBtn">
-                        <span>✏️ Edit Profile</span>
-                        <span class="settings-arrow">→</span>
-                    </div>
-                    <div class="settings-item" id="changePasswordBtn">
-                        <span>🔑 Change Password</span>
-                        <span class="settings-arrow">→</span>
-                    </div>
-                    <div class="settings-item">
-                        <span>🔔 Notifications</span>
-                        <span class="settings-arrow">→</span>
-                    </div>
-                    <div class="settings-item logout-item" id="logoutBtn">
-                        <span>🚪 Logout</span>
-                        <span class="settings-arrow">→</span>
-                    </div>
+                    <div class="settings-item" id="editProfileBtn"><span>✏️ Edit Profile</span><span class="settings-arrow">→</span></div>
+                    <div class="settings-item" id="changePasswordBtn"><span>🔑 Change Password</span><span class="settings-arrow">→</span></div>
+                    <div class="settings-item" id="notificationsBtn"><span>🔔 Notifications</span><span class="settings-arrow">→</span></div>
+                    <div class="settings-item logout-item" id="logoutBtn"><span>🚪 Logout</span><span class="settings-arrow">→</span></div>
                 </div>
-
-                <!-- Edit Profile Form -->
                 <div id="editProfileForm" style="display:none; margin-top: var(--space-md);">
                     <h4>Edit Profile</h4>
                     <input type="text" id="editFullName" placeholder="Full Name" />
                     <input type="email" id="editEmail" placeholder="Email" />
                     <input type="tel" id="editPhone" placeholder="Phone" />
-                    <div style="display:flex; gap:var(--space-sm);">
-                        <button id="saveProfileBtn" class="create-account-btn" style="flex:1;">Save Changes</button>
-                        <button id="cancelProfileBtn" class="order-back-btn" style="flex:1;">Cancel</button>
-                    </div>
+                    <div style="display:flex; gap:var(--space-sm);"><button id="saveProfileBtn" class="create-account-btn" style="flex:1;">Save Changes</button><button id="cancelProfileBtn" class="order-back-btn" style="flex:1;">Cancel</button></div>
                 </div>
-
-                <!-- Change Password Form -->
                 <div id="changePasswordForm" style="display:none; margin-top: var(--space-md);">
                     <h4>Change Password</h4>
-                    <div class="password-field">
-                        <input type="password" id="currentPassword" placeholder="Current Password" />
-                        <button type="button" class="toggle-password" data-target="currentPassword">👁️</button>
-                    </div>
-                    <div class="password-field">
-                        <input type="password" id="newPassword" placeholder="New Password" />
-                        <button type="button" class="toggle-password" data-target="newPassword">👁️</button>
-                    </div>
-                    <div class="password-field">
-                        <input type="password" id="confirmNewPassword" placeholder="Confirm New Password" />
-                        <button type="button" class="toggle-password" data-target="confirmNewPassword">👁️</button>
-                    </div>
-                    <div style="display:flex; gap:var(--space-sm);">
-                        <button id="savePasswordBtn" class="create-account-btn" style="flex:1;">Change Password</button>
-                        <button id="cancelPasswordBtn" class="order-back-btn" style="flex:1;">Cancel</button>
-                    </div>
+                    <div class="password-field"><input type="password" id="currentPassword" placeholder="Current Password" /><button type="button" class="toggle-password" data-target="currentPassword">👁️</button></div>
+                    <div class="password-field"><input type="password" id="newPassword" placeholder="New Password" /><button type="button" class="toggle-password" data-target="newPassword">👁️</button></div>
+                    <div class="password-field"><input type="password" id="confirmNewPassword" placeholder="Confirm New Password" /><button type="button" class="toggle-password" data-target="confirmNewPassword">👁️</button></div>
+                    <div style="display:flex; gap:var(--space-sm);"><button id="savePasswordBtn" class="create-account-btn" style="flex:1;">Change Password</button><button id="cancelPasswordBtn" class="order-back-btn" style="flex:1;">Cancel</button></div>
+                </div>
+                <div id="notificationsPanel" style="display:none; margin-top: var(--space-md);">
+                    <h4>🔔 Notification Settings</h4>
+                    <div class="notification-item"><label><input type="checkbox" id="notifBookings" checked /> Booking Updates</label><p>Get notified about your booking status changes</p></div>
+                    <div class="notification-item"><label><input type="checkbox" id="notifOffers" checked /> Special Offers</label><p>Receive alerts about exclusive deals and discounts</p></div>
+                    <div class="notification-item"><label><input type="checkbox" id="notifReminders" /> Travel Reminders</label><p>Reminders about upcoming trips</p></div>
+                    <div class="notification-item"><label><input type="checkbox" id="notifNewsletter" /> Newsletter</label><p>Weekly travel inspiration and tips</p></div>
+                    <button id="saveNotificationsBtn" class="create-account-btn" style="margin-top:var(--space-md);">Save Preferences</button>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <!-- ========================================================= -->
-    <!--  WISHLIST OVERLAY                                          -->
-    <!-- ========================================================= -->
+    <!-- WISHLIST OVERLAY -->
     <div id="wishlistOverlay" class="wishlist-overlay">
         <div class="wishlist-panel">
-            <div class="wishlist-header">
-                <h2>❤️ Your Wishlist</h2>
-                <button id="closeWishlist" class="close-wishlist">✕</button>
-            </div>
+            <div class="wishlist-header"><h2>❤️ Your Wishlist</h2><button id="closeWishlist" class="close-wishlist">✕</button></div>
             <div id="wishlistItems"></div>
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!--  TOUR POPUP                                                -->
-    <!-- ========================================================= -->
+    <!-- TOUR POPUP -->
     <div id="tourPopup" class="tour-popup">
         <div class="popup-content">
             <button id="closePopup" class="close-popup">✕</button>
             <div class="popup-body">
-                <div class="popup-image">
-                    <img id="popupImg" src="" alt="" />
-                </div>
+                <div class="popup-image"><img id="popupImg" src="" alt="" /></div>
                 <div class="popup-info">
                     <h2 id="popupName"></h2>
                     <p id="popupDesc"></p>
                     <p class="popup-price" id="popupPrice"></p>
-                    <div class="popup-rating">
-                        <span>Your Rating:</span>
-                        <div class="popup-stars" id="popupStars">
-                            <span data-value="1">★</span>
-                            <span data-value="2">★</span>
-                            <span data-value="3">★</span>
-                            <span data-value="4">★</span>
-                            <span data-value="5">★</span>
-                        </div>
-                        <span id="popupRatingText">Not rated</span>
-                    </div>
+                    <div class="popup-rating"><span>Your Rating:</span><div class="popup-stars" id="popupStars"><span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span></div><span id="popupRatingText">Not rated</span></div>
                     <button id="popupBookNow" class="book-now">Book Now</button>
-                    <div class="popup-comment">
-                        <label>Special Requests:</label>
-                        <textarea id="popupComment" placeholder="Any special requirements..." rows="3"></textarea>
-                        <button id="popupSubmitComment" class="rating-submit">Submit Request</button>
-                    </div>
+                    <div class="popup-comment"><label>Special Requests:</label><textarea id="popupComment" placeholder="Any special requirements..." rows="3"></textarea><button id="popupSubmitComment" class="rating-submit">Submit Request</button></div>
                     <div id="popupComments" class="popup-comments"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!--  BOOKING / PAYMENT POPUP                                   -->
-    <!-- ========================================================= -->
+    <!-- BOOKING POPUP -->
     <div id="bookingPopup" class="booking-popup">
         <div class="booking-popup-content">
             <button id="closeBookingPopup" class="close-popup">✕</button>
             <div class="booking-popup-body">
                 <h2>📋 Book Your Tour</h2>
-                
-                <!-- Tour Summary -->
-                <div class="booking-summary" id="bookingSummary">
-                    <h3 id="bookingTourName"></h3>
-                    <p id="bookingTourPrice"></p>
-                    <p id="bookingTourDuration"></p>
-                </div>
-
-                <!-- Step 1: Traveler Details -->
+                <div class="booking-summary" id="bookingSummary"><h3 id="bookingTourName"></h3><p id="bookingTourPrice"></p><p id="bookingTourDuration"></p></div>
                 <div class="booking-step" id="bookingStep1">
                     <h3>👤 Traveler Details</h3>
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" id="bookingName" placeholder="Enter full name" />
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="bookingEmail" placeholder="Enter email" />
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel" id="bookingPhone" placeholder="Enter phone number" />
-                    </div>
+                    <div class="form-group"><label>Full Name</label><input type="text" id="bookingName" placeholder="Enter full name" /></div>
+                    <div class="form-group"><label>Email</label><input type="email" id="bookingEmail" placeholder="Enter email" /></div>
+                    <div class="form-group"><label>Phone</label><input type="tel" id="bookingPhone" placeholder="Enter phone number" /></div>
                     <button class="booking-next-btn" onclick="goToBookingStep(2)">Next →</button>
                 </div>
-
-                <!-- Step 2: Tour Details -->
                 <div class="booking-step" id="bookingStep2" style="display:none;">
                     <h3>📅 Tour Details</h3>
-                    <div class="form-group">
-                        <label>Number of Travelers</label>
-                        <select id="bookingTravelers">
-                            <option value="1">1 Traveler</option>
-                            <option value="2">2 Travelers</option>
-                            <option value="3">3 Travelers</option>
-                            <option value="4">4 Travelers</option>
-                            <option value="5">5 Travelers</option>
-                            <option value="6">6+ Travelers</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Number of Days</label>
-                        <select id="bookingDays">
-                            <option value="1">1 Day</option>
-                            <option value="2">2 Days</option>
-                            <option value="3">3 Days</option>
-                            <option value="4">4 Days</option>
-                            <option value="5">5 Days</option>
-                            <option value="6">6 Days</option>
-                            <option value="7">7 Days</option>
-                            <option value="8">8+ Days</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Travel Date</label>
-                        <input type="date" id="bookingDate" />
-                    </div>
-                    <div class="booking-buttons">
-                        <button class="booking-back-btn" onclick="goToBookingStep(1)">← Back</button>
-                        <button class="booking-next-btn" onclick="goToBookingStep(3)">Next →</button>
-                    </div>
+                    <div class="form-group"><label>Number of Travelers</label><select id="bookingTravelers"><option value="1">1 Traveler</option><option value="2">2 Travelers</option><option value="3">3 Travelers</option><option value="4">4 Travelers</option><option value="5">5 Travelers (10% OFF)</option><option value="6">6 Travelers (10% OFF)</option><option value="7">7 Travelers (10% OFF)</option><option value="8">8+ Travelers (10% OFF)</option></select></div>
+                    <div class="form-group"><label>Number of Days</label><select id="bookingDays"><option value="1">1 Day</option><option value="2">2 Days</option><option value="3">3 Days</option><option value="4">4 Days</option><option value="5">5 Days</option><option value="6">6 Days</option><option value="7">7 Days</option><option value="8">8+ Days</option></select></div>
+                    <div class="form-group"><label>Travel Date</label><input type="date" id="bookingDate" /></div>
+                    <div class="booking-buttons"><button class="booking-back-btn" onclick="goToBookingStep(1)">← Back</button><button class="booking-next-btn" onclick="goToBookingStep(3)">Next →</button></div>
                 </div>
-
-                <!-- Step 3: Payment -->
                 <div class="booking-step" id="bookingStep3" style="display:none;">
                     <h3>💳 Payment Method</h3>
                     <div class="payment-methods">
-                        <div class="payment-option selected" data-method="card" onclick="selectPaymentMethod('card')">
-                            <span>💳 Credit/Debit Card</span>
-                        </div>
-                        <div class="payment-option" data-method="netbanking" onclick="selectPaymentMethod('netbanking')">
-                            <span>🏦 Net Banking</span>
-                        </div>
-                        <div class="payment-option" data-method="upi" onclick="selectPaymentMethod('upi')">
-                            <span>📱 UPI (GPay/PhonePe)</span>
-                        </div>
-                        <div class="payment-option" data-method="cod" onclick="selectPaymentMethod('cod')">
-                            <span>💵 Cash on Delivery</span>
-                        </div>
+                        <div class="payment-option selected" data-method="card" onclick="selectPaymentMethod('card')"><span>💳 Credit/Debit Card</span></div>
+                        <div class="payment-option" data-method="netbanking" onclick="selectPaymentMethod('netbanking')"><span>🏦 Net Banking</span></div>
+                        <div class="payment-option" data-method="upi" onclick="selectPaymentMethod('upi')"><span>📱 UPI (QR Code)</span></div>
+                        <div class="payment-option" data-method="cod" onclick="selectPaymentMethod('cod')"><span>💵 Cash on Delivery</span></div>
                     </div>
-
-                    <!-- Card Details -->
-                    <div id="cardDetails" class="card-details">
-                        <input type="text" placeholder="Card Number" />
-                        <div class="card-row">
-                            <input type="text" placeholder="MM/YY" />
-                            <input type="password" placeholder="CVV" />
-                        </div>
-                        <input type="text" placeholder="Cardholder Name" />
-                    </div>
-
-                    <!-- Net Banking Options -->
-                    <div id="netbankingOptions" style="display:none;" class="netbanking-options">
-                        <select>
-                            <option value="">Select Bank</option>
-                            <option value="sbi">State Bank of India</option>
-                            <option value="hdfc">HDFC Bank</option>
-                            <option value="icici">ICICI Bank</option>
-                            <option value="axis">Axis Bank</option>
-                            <option value="kotak">Kotak Mahindra Bank</option>
-                            <option value="yes">Yes Bank</option>
-                            <option value="pnb">Punjab National Bank</option>
-                            <option value="canara">Canara Bank</option>
-                        </select>
-                    </div>
-
-                    <!-- UPI Options -->
-                    <div id="upiOptions" style="display:none;" class="upi-options">
-                        <input type="text" placeholder="UPI ID (example@upi)" />
-                    </div>
-
-                    <!-- Order Summary -->
-                    <div class="booking-summary-box">
-                        <h4>📦 Booking Summary</h4>
-                        <div class="summary-row"><span>Tour Price</span><span id="summaryBasePrice">₹0</span></div>
-                        <div class="summary-row"><span>Travelers</span><span id="summaryTravelers">1</span></div>
-                        <div class="summary-row"><span>Days</span><span id="summaryDays">1</span></div>
-                        <div class="summary-row"><span>GST (5%)</span><span id="summaryGST">₹0</span></div>
-                        <div class="summary-row total"><span>Total Amount</span><span id="summaryTotal">₹0</span></div>
-                    </div>
-
-                    <div class="booking-buttons">
-                        <button class="booking-back-btn" onclick="goToBookingStep(2)">← Back</button>
-                        <button class="booking-confirm-btn" onclick="confirmBooking()">🔒 Confirm Booking</button>
-                    </div>
+                    <div id="cardDetails" class="card-details"><input type="text" placeholder="Card Number" /><div class="card-row"><input type="text" placeholder="MM/YY" /><input type="password" placeholder="CVV" /></div><input type="text" placeholder="Cardholder Name" /></div>
+                    <div id="netbankingOptions" style="display:none;" class="netbanking-options"><select><option value="">Select Bank</option><option value="sbi">State Bank of India</option><option value="hdfc">HDFC Bank</option><option value="icici">ICICI Bank</option><option value="axis">Axis Bank</option><option value="kotak">Kotak Mahindra Bank</option><option value="yes">Yes Bank</option><option value="pnb">Punjab National Bank</option><option value="canara">Canara Bank</option></select></div>
+                    <div id="upiOptions" style="display:none;" class="upi-options"><div class="upi-qr-container"><p class="upi-hint">Scan this QR code with any UPI app</p><div id="upiQRCode" class="upi-qr-box"></div><div class="upi-divider">OR</div><input type="text" placeholder="Enter UPI ID (example@upi)" id="upiIdInput" /></div></div>
+                    <div class="booking-summary-box"><h4>📦 Booking Summary</h4><div class="summary-row"><span>Tour Price</span><span id="summaryBasePrice">₹0</span></div><div class="summary-row"><span>Travelers</span><span id="summaryTravelers">1</span></div><div class="summary-row"><span>Days</span><span id="summaryDays">1</span></div><div class="summary-row"><span>Group Discount</span><span id="summaryGroupDiscount">₹0</span></div><div class="summary-row"><span>GST (5%)</span><span id="summaryGST">₹0</span></div><div class="summary-row total"><span>Total Amount</span><span id="summaryTotal">₹0</span></div></div>
+                    <div class="booking-buttons"><button class="booking-back-btn" onclick="goToBookingStep(2)">← Back</button><button class="booking-confirm-btn" onclick="confirmBooking()">🔒 Confirm Booking</button></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!--  BOOKING SUCCESS POPUP                                     -->
-    <!-- ========================================================= -->
+    <!-- SUCCESS POPUP -->
     <div id="bookingSuccessPopup" class="success-popup">
         <div class="success-popup-content">
             <div class="success-icon">🎉</div>
             <h2>Booking Confirmed!</h2>
             <p class="success-sub">✅ Your tour has been booked successfully</p>
+            <div class="qr-code-area"><div id="qrCodeBox" class="qr-code-box"></div><p class="qr-label">📱 Scan for Digital Ticket</p></div>
             <div class="success-details">
                 <div class="success-row"><span>Booking #:</span><span id="successBookingId">EW2026-001237</span></div>
                 <div class="success-row"><span>Date:</span><span id="successBookingDate">16 Jan 2026</span></div>
@@ -718,83 +504,31 @@
                 <div class="success-row"><span>Travelers:</span><span id="successBookingTravelers">1</span></div>
                 <div class="success-row"><span>Days:</span><span id="successBookingDays">1</span></div>
             </div>
-            <div class="success-address">
-                <p><strong>📍 Booking Details:</strong></p>
-                <p id="successBookingDetails">Goa Beach Escape for 1 traveler(s) - 3 Days</p>
-            </div>
-            <div class="success-buttons">
-                <button class="success-btn primary" onclick="closeBookingSuccess()">🏠 Continue Shopping</button>
-                <button class="success-btn secondary" onclick="closeBookingSuccessAndGoProfile()">👤 View Bookings</button>
-                <button class="success-btn secondary" onclick="downloadInvoice()">💳 Download Invoice</button>
-            </div>
+            <div class="live-tracking"><h4>🚌 Live Tracking</h4><div class="tracking-progress"><div class="tracking-bar"></div></div><p class="tracking-status">Status: <strong>Booking Confirmed ✅</strong></p><p class="tracking-eta">Estimated confirmation: 24 hours</p></div>
+            <div class="success-address"><p><strong>📍 Booking Details:</strong></p><p id="successBookingDetails">Goa Beach Escape for 1 traveler(s) - 3 Days</p></div>
+            <div class="success-buttons"><button class="success-btn primary" onclick="closeBookingSuccess()">🏠 Continue Shopping</button><button class="success-btn secondary" onclick="closeBookingSuccessAndGoProfile()">👤 View Bookings</button><button class="success-btn secondary" onclick="downloadInvoice()">💳 Download Invoice</button></div>
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!--  CHATBOT / HELP CENTER (10 Topics)                        -->
-    <!-- ========================================================= -->
+    <!-- CHATBOT -->
     <div class="chatbot-toggle" id="chatbotToggle">💬</div>
     <div class="chatbot-container" id="chatbotContainer">
-        <div class="chatbot-header">
-            <span>💬 Help Center</span>
-            <button class="chatbot-close" id="chatbotClose">✕</button>
-        </div>
-        <div class="chatbot-messages" id="chatbotMessages">
-            <div class="chatbot-msg bot"><p>🤖 Hi! I'm TravelBot. How can I help you today?</p></div>
-        </div>
+        <div class="chatbot-header"><span>💬 TravelBot Assistant</span><button class="chatbot-close" id="chatbotClose">✕</button></div>
+        <div class="chatbot-messages" id="chatbotMessages"><div class="chatbot-msg bot"><p>🤖 Hi! I'm your AI Travel Assistant. Ask me anything about tours, bookings, payments, or travel tips!</p></div></div>
         <div class="chatbot-quick-replies" id="chatbotQuickReplies"></div>
-        <div class="chatbot-input">
-            <input type="text" id="chatbotInput" placeholder="Type your message..." />
-            <button id="chatbotSend">Send</button>
-        </div>
+        <div class="chatbot-input"><input type="text" id="chatbotInput" placeholder="Ask me anything..." /><button type="button" class="chatbot-mic-btn" id="chatbotMicBtn" title="Voice Input">🎤</button><button id="chatbotSend">Send</button></div>
     </div>
 
-    <!-- ========================================================= -->
-    <!--  DOWN TO TOP BUTTON                                        -->
-    <!-- ========================================================= -->
     <button id="downToTopBtn" class="down-to-top-btn" title="Go to top">⬆</button>
 
-    <!-- ========================================================= -->
-    <!--  FOOTER                                                    -->
-    <!-- ========================================================= -->
     <footer>
         <div class="footer-container">
-            <div class="footer-col">
-                <h4>Explore World</h4>
-                <p>Explore the world with us.</p>
-                <p>&copy; 2026 Explore World</p>
-            </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#" data-section="home">Home</a></li>
-                    <li><a href="#" data-section="about">About Us</a></li>
-                    <li><a href="#" data-section="tours">Tours</a></li>
-                    <li><a href="#" data-section="offers">Offers</a></li>
-                    <li><a href="#" data-section="profile">Profile</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <ul>
-                    <li>📧 info@exploreworld.com</li>
-                    <li>📞 +91 74878 14056</li>
-                    <li>📍 Ahmedabad, India</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Follow Us</h4>
-                <ul class="social-links">
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">YouTube</a></li>
-                </ul>
-            </div>
+            <div class="footer-col"><h4>Explore World</h4><p>Explore the world with us.</p><p>&copy; 2026 Explore World</p></div>
+            <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="#" data-section="home">Home</a></li><li><a href="#" data-section="about">About Us</a></li><li><a href="#" data-section="tours">Tours</a></li><li><a href="#" data-section="offers">Offers</a></li><li><a href="#" data-section="profile">Profile</a></li></ul></div>
+            <div class="footer-col"><h4>Contact</h4><ul><li>📧 info@exploreworld.com</li><li>📞 +91 98765 43210</li><li>📍 Mumbai, India</li></ul></div>
+            <div class="footer-col"><h4>Follow Us</h4><ul class="social-links"><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="#">Twitter</a></li><li><a href="#">YouTube</a></li></ul></div>
         </div>
-        <div class="footer-bottom">
-            <p>Built with ❤️ for Frontend Internship · Week 3 · Day 15</p>
-        </div>
+        <div class="footer-bottom"><p>Built with ❤️ for Frontend Internship · Week 3 · Day 15</p></div>
     </footer>
 </div>
 
